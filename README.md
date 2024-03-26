@@ -11,3 +11,11 @@ Code:
 let userPizza = new Pizza();
 userPizza.addTopping("cheese");
 Expect: userPizza = { size: "medium", toppings: ["cheese"] }
+
+Describe: Pizza.prototype.setSize
+
+Test: It should set the value of the Pizza's size string.
+Code:
+let userPizza = new Pizza();
+userPizza.setSize("small");
+Expect: userPizza = { size: "small", toppings: [] }
