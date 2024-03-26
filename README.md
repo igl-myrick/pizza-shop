@@ -19,3 +19,13 @@ Code:
 let userPizza = new Pizza();
 userPizza.setSize("small");
 Expect: userPizza = { size: "small", toppings: [] }
+
+Describe: Pizza.prototype.calculatePrice
+
+Test: It should return a number based on the pizza's size and toppings.
+Code: 
+let userPizza = new Pizza();
+userPizza.setSize("small");
+userPizza.addTopping("cheese");
+userPizza.calculatePrice();
+Expect: 8.50
