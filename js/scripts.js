@@ -7,3 +7,7 @@ function Pizza() {
 Pizza.prototype.addTopping = function(inputTopping) {
   this.toppings.push(inputTopping);
 }
+
+Pizza.prototype.setSize = function(inputSize) {
+  this.size = inputSize;
+}
