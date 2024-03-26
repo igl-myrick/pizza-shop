@@ -17,6 +17,13 @@ Pizza.prototype.calculatePrice = function() {
   for (let i = 0; i < this.toppings.length; i+=1) {
     result += 0.5;
   }
+  if (this.size === "small") {
+    result += 8;
+  } else if (this.size === "medium") {
+    result += 10;
+  } else {
+    result += 12;
+  }
   return result;
 }
 
