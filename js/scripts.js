@@ -42,14 +42,17 @@ function displayUserPizza(pizzaSize, pizzaToppings) {
   const pizzaDisplayDiv = document.createElement("div");
   const pizzaDisplayPara = document.createElement("p");
   const pizzaDisplayList = document.createElement("ul");
+  const pizzaPricePara = document.createElement("p");
   pizzaDisplayPara.innerText = "You have selected a " + pizzaSize + " pizza with:";
   pizzaToppings.forEach(function(element) {
     const listItem = document.createElement("li");
     listItem.innerText = element;
     pizzaDisplayList.append(listItem);
   });
+  pizzaPricePara.innerText = "Your price is $" + userPizza.calculatePrice();
   pizzaDisplayDiv.append(pizzaDisplayPara);
   pizzaDisplayDiv.append(pizzaDisplayList);
+  pizzaDisplayDiv.append(pizzaPricePara);
   document.body.append(pizzaDisplayDiv);
 }
 
