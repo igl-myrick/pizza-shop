@@ -30,12 +30,19 @@ Pizza.prototype.calculatePrice = function() {
 // business logic
 let userPizza = new Pizza();
 
+function updatePizzaInfo(inputPizza, pizzaSize, pizzaToppings) {
+  inputPizza.setSize(pizzaSize);
+  pizzaToppings.forEach(function(element) {
+  inputPizza.addTopping(element.value);
+  });
+}
+
 // ui logic
 function displayUserPizza(pizzaSize, pizzaToppings) {
   const pizzaDisplayDiv = document.createElement("div");
   const pizzaDisplayPara = document.createElement("p");
   const pizzaDisplayList = document.createElement("ul");
-  pizzaDisplayPara.innerText = "You have selected a " + pizzaSize + " pizza with:"
+  pizzaDisplayPara.innerText = "You have selected a " + pizzaSize + " pizza with:";
   pizzaToppings.forEach(function(element) {
     const listItem = document.createElement("li");
     listItem.innerText = element;
@@ -49,14 +56,11 @@ function displayUserPizza(pizzaSize, pizzaToppings) {
 function getPizzaInfo(e) {
   e.preventDefault();
   const pizzaSize = document.querySelector("input[name='size']:checked").value;
-  userPizza.setSize(pizzaSize);
   const selectedToppings = document.querySelectorAll("input[name='topping']:checked");
-  selectedToppings.forEach(function(element) {
-    userPizza.addTopping(element.value);
-  });
+  updatePizzaInfo(userPizza, pizzaSize, selectedToppings);
   displayUserPizza(userPizza.size, userPizza.toppings);
 }
 
 window.addEventListener("load", function() {
   document.querySelector("form").addEventListener("submit", getPizzaInfo);
-})
+});
