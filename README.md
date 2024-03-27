@@ -36,3 +36,13 @@ userPizza.setSize("small");
 userPizza.addTopping("cheese");
 userPizza.calculatePrice();
 Expect: 8.50
+
+Describe: updatePizzaInfo
+
+Test: It should update a pizza object with a selected size and toppings.
+Code:
+let userPizza = new Pizza();
+const pizzaSize = "large";
+const pizzaToppings = ["cheese", "pepperoni"];
+userPizza.updatePizzaInfo(userPizza, pizzaSize, pizzaToppings)
+Expect: userPizza = { size: "large", toppings: ["cheese", "pepperoni"] }
