@@ -31,6 +31,7 @@ Pizza.prototype.calculatePrice = function() {
 let userPizza = new Pizza();
 
 function updatePizzaInfo(inputPizza, pizzaSize, pizzaToppings) {
+  inputPizza.toppings = [];
   inputPizza.setSize(pizzaSize);
   pizzaToppings.forEach(function(element) {
   inputPizza.addTopping(element.value);
@@ -54,6 +55,9 @@ function displayUserPizza(pizzaSize, pizzaToppings) {
   pizzaDisplayDiv.append(pizzaDisplayList);
   pizzaDisplayDiv.append(pizzaPricePara);
   document.body.append(pizzaDisplayDiv);
+  document.querySelector("form").addEventListener("submit", function() {
+    pizzaDisplayDiv.remove();
+  });
 }
 
 function getPizzaInfo(e) {
@@ -62,6 +66,13 @@ function getPizzaInfo(e) {
   const selectedToppings = document.querySelectorAll("input[name='topping']:checked");
   updatePizzaInfo(userPizza, pizzaSize, selectedToppings);
   displayUserPizza(userPizza.size, userPizza.toppings);
+  resetInputs();
+}
+
+function resetInputs() {
+  document.querySelectorAll("[name='topping']").forEach(function(element) {
+    element.checked = false;
+  });
 }
 
 window.addEventListener("load", function() {
