@@ -1,0 +1,26 @@
+body {
+  background-color: #fff2e2;
+}
+
+.centered {
+  text-align: center;
+}
+
+#size-selection {
+  float: left;
+  margin-left: 150px;
+}
+
+#toppings-selection {
+  float: right;
+  margin-right: 150px;
+}
+
+#pizza-info {
+  float: right;
+  padding-left: 180px;
+}
+
+button {
+  margin-left: 244px;
+}
