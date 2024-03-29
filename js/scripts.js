@@ -54,7 +54,7 @@ function displayUserPizza(pizzaSize, pizzaToppings) {
   pizzaDisplayDiv.append(pizzaDisplayPara);
   pizzaDisplayDiv.append(pizzaDisplayList);
   pizzaDisplayDiv.append(pizzaPricePara);
-  document.body.append(pizzaDisplayDiv);
+  document.querySelector("div#pizza-info").append(pizzaDisplayDiv);
   document.querySelector("form").addEventListener("submit", function() {
     pizzaDisplayDiv.remove();
   });
@@ -64,15 +64,19 @@ function getPizzaInfo(e) {
   e.preventDefault();
   const pizzaSize = document.querySelector("input[name='size']:checked").value;
   const selectedToppings = document.querySelectorAll("input[name='topping']:checked");
-  updatePizzaInfo(userPizza, pizzaSize, selectedToppings);
-  displayUserPizza(userPizza.size, userPizza.toppings);
-  resetInputs();
-}
-
-function resetInputs() {
-  document.querySelectorAll("[name='topping']").forEach(function(element) {
-    element.checked = false;
-  });
+  if (selectedToppings.length === 0) {
+    const pizzaSelection = document.getElementById("pizza-selection");
+    const errorP = document.createElement("p");
+    errorP.setAttribute("class", "centered");
+    errorP.innerText = "Please select at least one topping.";
+    pizzaSelection.append(errorP);
+    document.querySelector("form").addEventListener("submit", function() {
+      errorP.remove();
+    });
+  } else {
+    updatePizzaInfo(userPizza, pizzaSize, selectedToppings);
+    displayUserPizza(userPizza.size, userPizza.toppings);
+  }
 }
 
 window.addEventListener("load", function() {
