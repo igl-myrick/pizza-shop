@@ -40,6 +40,7 @@ function updatePizzaInfo(inputPizza, pizzaSize, pizzaToppings) {
 
 // ui logic
 function displayUserPizza(pizzaSize, pizzaToppings) {
+  document.getElementById("pizza-info").innerText = "";
   const pizzaDisplayDiv = document.createElement("div");
   const pizzaDisplayPara = document.createElement("p");
   const pizzaDisplayList = document.createElement("ul");
@@ -55,24 +56,23 @@ function displayUserPizza(pizzaSize, pizzaToppings) {
   pizzaDisplayDiv.append(pizzaDisplayList);
   pizzaDisplayDiv.append(pizzaPricePara);
   document.querySelector("div#pizza-info").append(pizzaDisplayDiv);
-  document.querySelector("form").addEventListener("submit", function() {
-    pizzaDisplayDiv.remove();
-  });
+}
+
+function createError() {
+  const errorOutput = document.getElementById("error-output");
+  const errorP = document.createElement("p");
+  errorP.setAttribute("class", "centered");
+  errorP.innerText = "Please select at least one topping.";
+  errorOutput.append(errorP);
 }
 
 function getPizzaInfo(e) {
   e.preventDefault();
+  document.getElementById("error-output").innerText = "";
   const pizzaSize = document.querySelector("input[name='size']:checked").value;
   const selectedToppings = document.querySelectorAll("input[name='topping']:checked");
   if (selectedToppings.length === 0) {
-    const pizzaSelection = document.getElementById("pizza-selection");
-    const errorP = document.createElement("p");
-    errorP.setAttribute("class", "centered");
-    errorP.innerText = "Please select at least one topping.";
-    pizzaSelection.append(errorP);
-    document.querySelector("form").addEventListener("submit", function() {
-      errorP.remove();
-    });
+    createError();
   } else {
     updatePizzaInfo(userPizza, pizzaSize, selectedToppings);
     displayUserPizza(userPizza.size, userPizza.toppings);
